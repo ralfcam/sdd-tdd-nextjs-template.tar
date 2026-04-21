@@ -1,0 +1,25 @@
+---
+description: Optional Linear MCP sync when implementing or validating features (opt-in via .cursor/mcp.json).
+globs: ["specs/**/*.md", "tests/**/*"]
+alwaysApply: false
+---
+
+# Linear sync (optional)
+
+**If Linear MCP is not configured** (no `.cursor/mcp.json` copied from `.cursor/mcp.json.example`, or Linear not authorized in Cursor), **skip this rule entirely.** The template must work without Linear.
+
+When Linear **is** configured, follow `skills/linear-sync.md` for concrete tool calls and phase boundaries.
+
+## Contract (summary)
+
+- **Read** Linear issues freely at feature start to align with `validation.md` scenario rows (IDs like `R1-happy`).
+- **Write** only to: create/update issues when the human asked for it or the spec is approved; update issue `state`; add comments with test-run output.
+- **Never** set an issue to **Done** unless `npm run validate` (or an equivalent file-scoped test command for the current change) **exited 0 in this session** immediately before that update.
+- **Do not** spam Linear during the tight red/green/refactor loop — batch comments at phase boundaries (e.g. after RED, after GREEN, after refactor + validate).
+- **Do not** auto-create issues for scenarios the human has not approved; mirror the spec only after review.
+
+## Mapping
+
+- One **parent** Linear issue per feature (title ≈ feature slug) is enough; optional **sub-issues** map 1:1 to rows in `validation.md`.
+- Issue description (or comment) should list scenario IDs from `validation.md` so PMs and agents share the same contract.
+- Fill the optional `Linear` column in `validation.md` with identifiers (e.g. `LIN-123`) when issues exist.

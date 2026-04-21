@@ -1,0 +1,25 @@
+---
+description: How to read and write specification documents in this repo.
+globs: ["specs/**/*.md"]
+alwaysApply: false
+---
+
+# Spec Documents
+
+## Constitution (specs/constitution/)
+These files are invariants. Never violate them. If a task conflicts with the constitution, STOP and flag it.
+
+- `mission.md` — why this product exists and for whom.
+- `tech-stack.md` — approved libraries and frameworks. Do not introduce new dependencies without updating this file.
+- `roadmap.md` — phases and feature sequencing. Do not build out-of-sequence.
+- `non-functionals.md` — security, auth, validation, error-handling, performance, scalability, and data-quality requirements.
+
+## Feature Specs (specs/features/<feature>/)
+Each feature has three documents:
+
+- `plan.md` — what to build, why, and how it fits the roadmap.
+- `requirements.md` — numbered requirements (R1, R2...) each with a clear acceptance scenario.
+- `validation.md` — checklist of acceptance scenarios, marked TODO → IN_PROGRESS → PASSED.
+
+## Writing a new feature spec
+Use the template at `specs/features/_template/`. Copy it, rename, fill in requirements before touching any code.

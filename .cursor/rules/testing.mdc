@@ -1,0 +1,30 @@
+---
+description: Testing conventions and TDD rules.
+globs: ["tests/**/*.ts", "tests/**/*.tsx"]
+alwaysApply: false
+---
+
+# Testing Conventions
+
+## Test pyramid
+- Unit tests (`tests/unit/`) — fast, isolated, no I/O. One test file per source module.
+- Integration tests (`tests/integration/`) — test composed behavior; real DB/API calls allowed.
+- E2E acceptance tests (`tests/e2e/`) — one spec file per feature, scenarios map 1:1 to acceptance scenarios in `requirements.md`.
+
+## Naming conventions
+- Test files: `<module>.test.ts` or `<module>.test.tsx`
+- Describe blocks: name of the module or component under test.
+- Test names: `should <expected behavior> when <condition>`.
+
+## TDD cycle enforcement
+1. Write a test that describes the next required behavior.
+2. Run it. It must fail (red).
+3. Write only enough code to pass it (green).
+4. Refactor with tests green.
+5. Commit only when all tests pass.
+
+## Rules
+- No `test.skip` or `test.todo` in committed code without a linked issue.
+- No `jest.mock` for modules you own — use dependency injection instead.
+- Assertions must be specific: prefer `toEqual({ id: 1, name: "Alice" })` over `toBeTruthy()`.
+- Every bug fix starts with a failing regression test.

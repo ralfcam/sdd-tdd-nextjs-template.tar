@@ -1,0 +1,46 @@
+---
+description: Spec and Test Driven Development workflow for this repository.
+globs: ["**/*.ts", "**/*.tsx", "**/*.md"]
+alwaysApply: true
+---
+
+# Workflow: Spec-Driven + TDD
+
+## The delivery loop (mandatory for every change)
+
+1. **Read the spec first.** Before writing any code, read the relevant files under `specs/`:
+   - `specs/constitution/` — inviolable project rules. Never contradict them.
+   - `specs/features/<feature>/` — requirements, acceptance scenarios, validation criteria.
+
+2. **Write a failing test first (TDD).** For every requirement or acceptance scenario:
+   - Unit tests → `tests/unit/`
+   - Integration tests → `tests/integration/`
+   - E2E acceptance tests → `tests/e2e/`
+   - Run tests. They must be RED before you write implementation code.
+
+3. **Write the minimal implementation** that makes the failing test pass (green).
+   - No gold-plating. Make only the failing test pass.
+
+4. **Refactor under green.** Improve structure, naming, and duplication only while tests remain green.
+
+5. **Update validation artifacts.** After implementation, mark acceptance scenarios as PASSED in `specs/features/<feature>/validation.md`.
+
+6. **Update changelog.** Add an entry to `CHANGELOG.md` describing what changed and why.
+
+## Non-negotiable rules
+
+- Never write production code before a failing test exists.
+- Never skip the refactor step.
+- Security, auth, validation, and error handling are requirements — they each need tests.
+- TypeScript strict mode is always on. No `any`. No `@ts-ignore` without a comment explaining why.
+- All tests must pass before a feature is considered done: `npm run validate`.
+
+## Anti-patterns that are always wrong
+
+- Writing tests after implementation to hit coverage thresholds.
+- Tests that pass without real implementation (too weak) or that assert implementation details instead of behavior stated in `requirements.md`.
+- Skipping refactor while leaving `// TODO: clean up` or obvious duplication.
+- Mocking everything — integration tests must exercise real behavior.
+- `any` types to bypass type errors.
+- `console.log` left in production code.
+- Skipping `validation.md` updates.

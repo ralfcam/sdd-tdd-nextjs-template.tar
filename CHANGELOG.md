@@ -8,6 +8,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Cursor **Plan mode** workflow: `skills/plan-mode.md`, `.cursor/rules/plan-mode.mdc`; `AGENTS.md` **Modes (Cursor)**; README / `workflow.mdc` / `feature-spec.md` / `tdd-cycle.md` updated so the spec phase uses Plan mode and TDD uses Agent mode after human approval
 - Optional Linear MCP integration: `.cursor/mcp.json.example` (copy to gitignored `.cursor/mcp.json`), `.cursor/rules/linear-sync.mdc`, `skills/linear-sync.md`, constitution **Linear + MCP (when applicable)**, optional **Linear** column in feature `validation.md` templates
 - Tailwind CSS v4 with `@tailwindcss/postcss`, `postcss.config.mjs`, and `src/app/globals.css`
 - `AGENTS.md` for cross-tool agent instructions (constitution-first, validate gate)

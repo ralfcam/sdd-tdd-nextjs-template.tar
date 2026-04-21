@@ -8,6 +8,8 @@ alwaysApply: true
 
 ## The delivery loop (mandatory for every change)
 
+0. **Mode discipline.** Spec phase happens in **Cursor Plan mode**; TDD phase (tests + `src/`) in **Agent mode** after human approval. See `skills/plan-mode.md`.
+
 1. **Read the spec first.** Before writing any code, read the relevant files under `specs/`:
    - `specs/constitution/` — inviolable project rules. Never contradict them.
    - `specs/features/<feature>/` — requirements, acceptance scenarios, validation criteria.
@@ -44,3 +46,4 @@ alwaysApply: true
 - `any` types to bypass type errors.
 - `console.log` left in production code.
 - Skipping `validation.md` updates.
+- Drafting `specs/features/<slug>/*.md` in Agent mode (skips the human approval gate for the spec phase); jumping to Agent mode without an approved plan.

@@ -5,8 +5,8 @@ Spec-Driven + Test-Driven Development template for Next.js in Cursor. AI agents 
 ## Prerequisites
 
 - **Node.js 20+** (see `.nvmrc`)
-- **Cursor** with `.cursor/rules/` (workflow, specs, testing, optional Linear sync)
-- Other AI tools can follow [AGENTS.md](AGENTS.md) instead of Cursor rules
+- **Cursor** with `.cursor/rules/` (workflow, specs, testing, plan-mode, optional Linear sync)
+- Other AI tools: follow [AGENTS.md](AGENTS.md) instead of Cursor rules (same Plan-then-Agent contract in prose)
 
 ## Quick start
 
@@ -39,12 +39,13 @@ specs/
     _template/            ← Feature spec scaffold (or `npm run feature:new`)
     example-feature/      ← Example: User Registration
 skills/
+  plan-mode.md            ← Spec phase: Cursor Plan mode + handoff to Agent
   feature-spec.md         ← Write plan / requirements / validation
-  tdd-cycle.md            ← Red → green → refactor
+  tdd-cycle.md            ← Red → green → refactor (Agent mode)
   changelog.md            ← Keep a Changelog updates
   linear-sync.md          ← Optional: Linear MCP (after .cursor/mcp.json exists)
 .cursor/
-  rules/                  ← Cursor: workflow.mdc, specs.mdc, testing.mdc, linear-sync.mdc
+  rules/                  ← Cursor: workflow.mdc, specs.mdc, testing.mdc, plan-mode.mdc, linear-sync.mdc
   mcp.json.example        ← Copy to mcp.json to opt into Linear (mcp.json is gitignored)
 src/                      ← Next.js app
 tests/
@@ -67,11 +68,15 @@ Every change follows this sequence:
 
 ## Starting a new feature
 
+1. In **Cursor**, switch to **Plan mode** (mode switcher or **Ctrl+.** → **Plan**). See [skills/plan-mode.md](skills/plan-mode.md).
+2. Scaffold the feature directory:
+
 ```bash
 npm run feature:new -- my-feature
 ```
 
-Then edit `specs/features/my-feature/` (`plan.md`, `requirements.md`, `validation.md`). In Cursor, use `@skills/feature-spec.md` for the spec and `@skills/tdd-cycle.md` for implementation. If Linear MCP is enabled, use `@skills/linear-sync.md` after the spec is approved.
+3. In **Plan mode**, use `@skills/feature-spec.md` to draft `specs/features/my-feature/` (`plan.md`, `requirements.md`, `validation.md`). Approve the plan in Cursor (Plan UI / `cursor.createPlan` flow) or say explicitly that the spec is approved.
+4. Switch to **Agent mode**. Follow `@skills/tdd-cycle.md` for tests and implementation. If Linear MCP is enabled, use `@skills/linear-sync.md` **after** approval (writes are Agent mode).
 
 ## Optional: Linear via MCP
 

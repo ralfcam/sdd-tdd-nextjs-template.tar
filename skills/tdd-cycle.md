@@ -5,6 +5,8 @@ globs: ["tests/**/*.ts", "tests/**/*.tsx", "src/**/*.ts", "src/**/*.tsx"]
 
 # Skill: TDD Cycle
 
+**Precondition:** A human-approved `specs/features/<feature>/{plan,requirements,validation}.md` already exists (drafted in Plan mode per `@skills/plan-mode.md`). If not, stop and switch to Plan mode with `@skills/feature-spec.md`.
+
 When implementing a requirement from a feature spec, follow this exact sequence:
 
 ## Step 1 — Identify the next failing test

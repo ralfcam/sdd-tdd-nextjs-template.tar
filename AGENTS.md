@@ -20,6 +20,13 @@ Spec-Driven + Test-Driven. The full loop lives in `.cursor/rules/workflow.mdc` a
 
 Summary: **red → green → refactor** → update `validation.md` → update `CHANGELOG.md` → `npm run validate`.
 
+## Modes (Cursor)
+
+- **Plan mode** — spec phase. Draft or refine `specs/features/<feature>/{plan,requirements,validation}.md`. Use Cursor’s Plan approval flow (`cursor.createPlan` / Plan UI) or wait for an explicit human **approved** message before implementation. Do not edit `src/**` or `tests/**` or run shell from Plan mode. See `@skills/plan-mode.md`.
+- **Agent mode** — TDD phase. After approval, write tests and code per `@skills/tdd-cycle.md`, run `npm run test` / `npm run validate`, update `CHANGELOG.md`.
+
+**Non-Cursor agents:** same contract — treat spec work as read-only until the human explicitly approves the plan, then allow writes to `src/**` and `tests/**`.
+
 ## Build, test, validate
 
 - Install: `npm install` then `npx playwright install --with-deps`
@@ -34,6 +41,7 @@ Summary: **red → green → refactor** → update `validation.md` → update `C
 
 ## Skills
 
+- Plan mode (spec gate): `@skills/plan-mode.md`
 - New feature spec: `@skills/feature-spec.md`
 - TDD cycle: `@skills/tdd-cycle.md`
 - Changelog: `@skills/changelog.md`

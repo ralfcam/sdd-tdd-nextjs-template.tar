@@ -1,0 +1,17 @@
+---
+description: Default to Cursor Plan mode when working on specs; Agent mode for TDD after approval.
+globs: ["specs/**/*.md", "AGENTS.md"]
+alwaysApply: false
+---
+
+# Plan mode discipline
+
+Full contract: `skills/plan-mode.md`.
+
+- **Spec phase = Plan mode.** Draft or change `specs/features/<slug>/{plan,requirements,validation}.md` in **Cursor Plan mode** unless the user explicitly says **implement** / **write code** / **switch to Agent**.
+- **TDD phase = Agent mode.** After human approval, switch to **Agent mode** for `src/**`, `tests/**`, shell commands, and `@skills/tdd-cycle.md`.
+- **Approval:** Use Cursor's Plan approval flow (`cursor.createPlan` / Plan UI) or an explicit human message before implementation.
+- **Writes:** Do not edit `src/**` or `tests/**` while planning; do not run shell or write-path MCP from Plan mode.
+- **Handoff:** `validation.md` must have scenario rows; the first failing test to write should be agreed before Agent work starts.
+
+Non-Cursor agents: same boundary — read-only spec work until the human approves, then writes allowed.

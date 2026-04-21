@@ -6,7 +6,7 @@
 - [x] Constitution and first feature spec written
 
 ## Phase 1 — MVP
-<!-- Define your first real feature set here -->
+- [x] Email + password registration (`specs/features/user-management/`), in-memory persistence for the template baseline
 
 ## Phase 2
 <!-- Future phases -->

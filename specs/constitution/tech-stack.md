@@ -6,6 +6,8 @@
 |---|---|---|---|
 | Framework | Next.js | 15.x | App Router, TypeScript strict |
 | Language | TypeScript | 5.x | strict: true, no any |
+| Password hashing | bcryptjs | — | Required by constitution security rules for credentials; pure JS implementation suitable for tests and Node routes |
+| API validation | Zod | — | Schema validation at HTTP boundaries (`specs/constitution/non-functionals.md`) |
 | Styling | Tailwind CSS | 4.x | `@tailwindcss/postcss` + PostCSS; `@import "tailwindcss"` in global CSS |
 | Unit/Integration tests | Jest + Testing Library | 29.x / 16.x | jsdom; `jest.config.ts` via `ts-node` |
 | E2E tests | Playwright | 1.44.x | chromium + mobile Safari |

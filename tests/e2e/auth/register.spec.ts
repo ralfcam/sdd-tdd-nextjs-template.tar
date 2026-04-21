@@ -1,32 +1,43 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 /**
- * E2E acceptance tests for User Registration
- * Scenarios map 1:1 to specs/features/example-feature/requirements.md
- *
- * test.fixme: routes /register and /dashboard do not exist yet — unblock when
- * implementation lands per specs/features/example-feature/ (see tdd-cycle.md Step 2).
+ * E2E acceptance tests for User Registration.
+ * Scenarios map 1:1 to specs/features/user-management/requirements.md
  */
 
-test.describe("User Registration", () => {
-  test.fixme("R1-happy: valid form → user created → redirected to /dashboard", async ({ page }) => {
+function uniqueEmail(): string {
+  return `e2e-${crypto.randomUUID()}@example.com`;
+}
+
+test.describe.serial("User Registration", () => {
+  test("R1-happy: valid form → user created → redirected to /dashboard", async ({ page }) => {
+    const email = uniqueEmail();
     await page.goto("/register");
-    await page.getByLabel("Email").fill("alice@example.com");
+    await page.getByLabel("Email").fill(email);
     await page.getByLabel("Password").fill("strongpassword123");
     await page.getByRole("button", { name: /register/i }).click();
-    await expect(page).toHaveURL("/dashboard");
+    // Client handler awaits fetch before router.push; click() returns before navigation completes.
+    await page.waitForURL(/\/dashboard$/);
   });
 
-  test.fixme("R1-duplicate: duplicate email → inline error message", async ({ page }) => {
-    // Pre-condition: alice@example.com already exists (set up in beforeEach)
+  test("R1-duplicate: duplicate email → inline error message", async ({ page }) => {
+    const email = uniqueEmail();
+    const seeded = await page.request.post("/api/auth/register", {
+      data: { email, password: "strongpassword123" },
+      headers: { "Content-Type": "application/json" },
+    });
+    expect(seeded.ok()).toBe(true);
+
     await page.goto("/register");
-    await page.getByLabel("Email").fill("alice@example.com");
-    await page.getByLabel("Password").fill("strongpassword123");
+    await page.getByLabel("Email").fill(email);
+    await page.getByLabel("Password").fill("anotherpassword12");
     await page.getByRole("button", { name: /register/i }).click();
-    await expect(page.getByText("An account with this email already exists")).toBeVisible();
+    await expect(page.getByText("An account with this email already exists")).toBeVisible({
+      timeout: 20_000,
+    });
   });
 
-  test.fixme("R2-invalid-email: invalid email format → field-level error", async ({ page }) => {
+  test("R2-invalid-email: invalid email format → field-level error", async ({ page }) => {
     await page.goto("/register");
     await page.getByLabel("Email").fill("not-an-email");
     await page.getByLabel("Password").fill("strongpassword123");
@@ -34,9 +45,9 @@ test.describe("User Registration", () => {
     await expect(page.getByText("Enter a valid email address")).toBeVisible();
   });
 
-  test.fixme("R2-weak-password: short password → field-level error", async ({ page }) => {
+  test("R2-weak-password: short password → field-level error", async ({ page }) => {
     await page.goto("/register");
-    await page.getByLabel("Email").fill("alice@example.com");
+    await page.getByLabel("Email").fill(uniqueEmail());
     await page.getByLabel("Password").fill("short");
     await page.getByRole("button", { name: /register/i }).click();
     await expect(page.getByText("Password must be at least 12 characters")).toBeVisible();

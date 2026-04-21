@@ -46,8 +46,8 @@
 ---
 
 ## Non-functional requirements for this feature
-- [ ] Security: password hashed with bcrypt (cost factor ≥ 12); never stored in plaintext
-- [ ] Auth: session created server-side; session token is httpOnly cookie
-- [ ] Input validation: Zod schema at the API boundary; never trust client-side only
-- [ ] Error handling: 500 errors return `{ error: "Internal server error", correlationId }` — no stack traces
-- [ ] Performance: registration API responds in < 500ms at P95
+- [x] Security: password hashed with bcrypt (cost factor ≥ 12); never stored in plaintext
+- [x] Auth: session created server-side; session token is httpOnly cookie
+- [x] Input validation: Zod schema at the API boundary; never trust client-side only
+- [x] Error handling: 500 errors return `{ error: "Internal server error", correlationId }` — no stack traces
+- [ ] Performance: registration API responds in < 500ms at P95 (not measured on every run)

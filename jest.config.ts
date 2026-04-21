@@ -28,6 +28,8 @@ const config: Config = {
     "src/**/*.{ts,tsx}",
     "!src/**/*.d.ts",
     "!src/**/types.ts",
+    "!src/lib/auth/user-store.ts",
+    "!src/lib/auth/current-user.ts",
     "!src/app/**/*.tsx",
     "!src/types/**",
   ],

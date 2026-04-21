@@ -37,7 +37,7 @@ specs/
   constitution/           ← Read before code: mission, tech-stack, roadmap, non-functionals
   features/
     _template/            ← Feature spec scaffold (or `npm run feature:new`)
-    example-feature/      ← Example: User Registration
+    user-management/        ← Example: User Registration (SDD-TDD baseline)
 skills/
   feature-spec.md         ← Write plan / requirements / validation
   tdd-cycle.md            ← Red → green → refactor

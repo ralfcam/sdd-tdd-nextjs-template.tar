@@ -20,8 +20,8 @@ Without registration, no user-specific data can be stored or retrieved.
 - Email verification (Phase 2)
 
 ## Dependencies
-- Database schema with a `users` table must exist
-- Session management must be configured
+- **Runtime storage:** MVP uses an in-memory user store (`src/lib/auth/memory-store.ts`) suitable for demos and automated tests — replace with a persisted database before production traffic.
+- **Sessions:** Cookie-based sessions backed by an in-memory session registry in the template; persist sessions when a database exists.
 
 ## Estimated complexity
 M

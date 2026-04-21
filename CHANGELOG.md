@@ -8,6 +8,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- User registration baseline (email + password): `POST /api/auth/register` with Zod boundary validation, bcrypt-hashed passwords, httpOnly session cookie, `/register` and `/dashboard` UI; in-memory user/session stores for the template (`specs/features/user-management/`)
 - Optional Linear MCP integration: `.cursor/mcp.json.example` (copy to gitignored `.cursor/mcp.json`), `.cursor/rules/linear-sync.mdc`, `skills/linear-sync.md`, constitution **Linear + MCP (when applicable)**, optional **Linear** column in feature `validation.md` templates
 - Tailwind CSS v4 with `@tailwindcss/postcss`, `postcss.config.mjs`, and `src/app/globals.css`
 - `AGENTS.md` for cross-tool agent instructions (constitution-first, validate gate)
